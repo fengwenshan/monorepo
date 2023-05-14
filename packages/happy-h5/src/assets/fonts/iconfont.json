@@ -1,0 +1,23 @@
+{
+  "id": "4047479",
+  "name": "订婚",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1305488",
+      "name": "loading",
+      "font_class": "loading",
+      "unicode": "e644",
+      "unicode_decimal": 58948
+    },
+    {
+      "icon_id": "201557",
+      "name": "关闭",
+      "font_class": "guanbi",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    }
+  ]
+}

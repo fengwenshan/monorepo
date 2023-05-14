@@ -1,0 +1,66 @@
+// 爱心
+.love {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ff1414;
+  // transform: translate(-50%, -50%) rotate(45deg);
+  box-shadow: 0 0 15px #ff1414;
+  /* 动画名称 */
+  animation-name: Love;
+
+  /* 动画执行时间 */
+  animation-duration: .7s;
+
+  /* 动画执行次数   infinite是一直执行 */
+  animation-iteration-count: infinite; // 1;
+
+  /* 动画执行之前或之后的效果是否可见   forwards：动画执行完之后不会变成原来的效果 */
+  animation-fill-mode: forwards;
+
+  /* ease-in：缓慢开始  ease-out：缓慢结束  ease-in-out：缓慢开始缓慢结束 */
+  animation-timing-function: ease-in-out;
+  &.stop {
+    animation-play-state: paused;
+  }
+  &::after,
+  &::before {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-color: #ff1414;
+    border-radius: 50%;
+  }
+  &::after {
+    top: -50%;
+    left: 0px;
+  }
+  &::before {
+    top: 0px;
+    left: -50%;
+  }
+  &.show {
+    display: block;
+  }
+}
+
+// 心跳动
+@keyframes Love {
+    0% {
+      transform: scale(1) rotate(45deg) translate(-50%);
+    }
+    30% {
+      transform: scale(1.1) rotate(45deg) translate(-50%);
+    }
+    50% {
+      transform: scale(1.2) rotate(45deg) translate(-50%);
+    }
+    70% {
+      transform:  scale(1.1) rotate(45deg) translate(-50%);
+    }
+    100% {
+      transform: scale(1) rotate(45deg) translate(-50%);
+    }
+}

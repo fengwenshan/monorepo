@@ -1,0 +1,548 @@
+.envelope-dialog,
+.envelope-container,
+.envelope-content,
+.opposite, // 背面
+.phone // 手机号内容
+{
+  height: 100%;
+  width: 100%;
+}
+
+.envelope-dialog {
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  .envelope-container { 
+    padding: 60px 30px 20px;
+    box-sizing: border-box;
+  }
+  .envelope-content {
+    position: relative;
+  }
+  .opposite {
+    position: absolute;
+    background-color: $envelope-bg;
+    z-index: 1;
+  }
+  .phone {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    text-align: center;
+    .title {
+      padding: 0;
+      margin: 0;
+      /* 使用华文行楷字体 */
+      font-family: STXinwei, '华文行楷', cursive;
+      /* 添加颜色、大小和阴影 */
+      color: #e85a5a;
+      font-size: 80px;
+      text-align: center;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    .form-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 0.5rem
+    }
+    .label {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2rem;
+      color: rgb(237, 90, 100);
+      margin-bottom: 1rem;
+    }
+    .number-input {
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: none;
+      font-size: 1.2rem;
+      outline: none;
+      background-color: #F9E8D2;
+    }
+    .error {
+      position: absolute;
+      bottom: -1.5rem;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #F47560;
+      color: #fff;
+      padding: 0.5rem 2rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 5px;
+      outline: none;
+      border: 0;
+    }
+  }
+  .paper {
+    display: flex;
+    flex-direction: column;
+    .paper-slider {
+      padding: 12px;
+      // width: 183px;
+      height: 183px;
+      margin-bottom: 10px;
+      .paper-slider-border {
+        padding: 5px;
+        height: 100%;
+        border: 1px solid #f7debb;
+      }
+    }
+    .paper-container {
+      flex: 1;
+      padding: 12px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      overflow-x: hidden;
+      text-align: left;
+      font-size: 16px;
+    }
+  }
+  .front {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 3
+  }
+  .front-left,
+  .front-right {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    border-radius: 10px;
+    background-color: $envelope-bg;
+    
+  }
+  .front-left {
+    left: 0;
+    width: 70%;
+    z-index: 20;
+    box-sizing: border-box;
+    box-shadow: 4px 0 10px rgba(0,0,0,.4);
+  }
+  .front-right {
+    right: 0;
+    width: 40%;
+    z-index: 10;
+    box-shadow: -4px 0 10px rgba(0,0,0,.4);
+  }
+  .send {
+    display: flex;
+    align-items: center;
+    padding-top: 8px;
+    height: 32px;
+    padding: 5px 12px 12px;
+    flex-shrink: 0;
+    &.focus {
+      height: 64px;
+    }
+    &.no-focus {
+      height: 32px;
+    }
+    .input {
+      // height: 32px;
+      height: 100%;
+  
+      line-height: 18px;
+      font-size: 16px;
+      padding: 6px 4px;
+      border: 0;
+      width: 100%;
+      box-sizing: border-box;
+      outline: none;
+
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: none;
+      font-size: 1.2rem;
+      background-color: #F9E8D2;
+    }
+    .send-btn {
+      width: 60px;
+      height: 32px;
+      margin-left: 10px;
+      background-color: #F47560;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+  }
+}
+
+// 没有登陆信封出场动画
+.envelope-dialog {
+  .icon-guanbi {
+    display: none;
+  }
+  &.no-login,
+  &.login {
+    .paper { 
+      opacity: 0;
+    }
+  }
+  &.no-login {
+    opacity: 0;
+    transform: scale(0);
+    .envelope-content {
+      .opposite {
+        z-index: 30;
+      }
+      .phone {
+        z-index: 31;
+      }
+    }
+    &.hidden {
+      .envelope-content {
+        .opposite {
+
+        }
+      }
+    }
+    &.show {
+      animation-name: EnvelopeDialogNoLoginShow;
+      animation-timing-function: cubic-bezier(.26,1.84,.39,.61);
+      .envelope-content {
+        .opposite {
+
+        }
+      }
+    }
+  }
+  &.login {
+    .opposite {
+      z-index: 30;
+      animation-delay: 0.8;
+      animation-name: EnvelopeDialogLogin;
+    }
+    .phone {
+      z-index: 31;
+      animation-delay: 0.8;
+      animation-name: EnvelopeDialogLogin;
+    }
+    .front {
+      opacity: 0;
+      animation-name: EnvelopeDialogLogin_V2;
+    }
+  }
+
+  // 展开
+  &.open {
+    .paper  {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      // font-family: 'Dancing Script', cursive;
+      font-size: 1.5rem;
+      text-align: left;
+      background-color: #F8F4E3;
+      // border-radius: 1rem;
+      z-index: 2;
+      transform:scale3d(50%, 50%, 50%);
+      animation-delay: 1.2s;
+      animation-duration: 2.5s;
+      animation-name: LoginPaperTop;
+      
+    }
+    .front-left {
+      animation-duration: 2s;
+      transform-origin: left;
+      animation-name: LoginLeftOpen;
+      transform: rotate3d(0, 0, 0, 0deg);
+    }
+    .front-right {
+      animation-duration: 2s;
+      transform-origin: right;
+      animation-name: LoginRightOpen;
+    }
+    .icon-guanbi {
+      display: block;
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.7rem;
+      font-weight: 700;
+      animation-delay: 3s;
+      opacity: 0;
+      animation-name: CloseOpen;
+    }
+  }
+  // 关闭
+  &.close {
+    .paper  {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      // font-family: 'Dancing Script', cursive;
+      font-size: 1.5rem;
+      text-align: left;
+      background-color: #F8F4E3;
+      // border-radius: 1rem;
+      z-index: 2;
+      transform:scale3d(50%, 50%, 50%);
+      // animation-delay: 1.2s;
+      animation-duration: 2.5s;
+      animation-name: LoginPaperBottom;
+      
+    }
+    .front-left {
+      animation-delay: 1.2s;
+      animation-duration: 2s;
+      transform-origin: left;
+      animation-name: LoginLeftClose;
+      transform: rotate3d(0, 1, 0, -140deg);
+    }
+    .front-right {
+      animation-delay: 1.2s;
+      animation-duration: 2s;
+      transform-origin: right;
+      animation-name: LoginRightClose;
+      transform: rotate3d(0, 1, 0, 140deg);
+    }
+    .icon-guanbi {
+      display: none;
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.7rem;
+      font-weight: 700;
+      animation-delay: 3s;
+      opacity: 0;
+      animation-name: CloseClose;
+    }
+  }
+  // 收起
+  &.contract {
+    .icon-guanbi {
+      display: none;
+    }
+    transform-origin: right bottom;
+    animation-name: DialogCloseAnimal;
+  }
+  &.expand {
+    .icon-guanbi {
+      display: none;
+    }
+    transform-origin: right bottom;
+    animation-name: DialogOpenAnimal;
+  }
+}
+
+// 1. 未登陆打开
+@keyframes EnvelopeDialogNoLoginShow {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  } 
+}
+// 1. 翻转动画 no-login -> login
+@keyframes EnvelopeDialogLogin {
+  0% {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+  20% {
+    transform: rotate3d(0, 1, 0, 30deg);
+  }
+  40% {
+    transform: rotate3d(0, 1, 0, 60deg);
+  }
+  50% {
+    transform: rotate3d(0, 1, 0, 90deg);
+    z-index: 1;
+  }
+  60% {
+    transform: rotate3d(0, 1, 0, 120deg);
+    z-index: 1;
+  }
+  80% {
+    transform: rotate3d(0, 1, 0, 150deg);
+    z-index: 1;
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, 180deg);
+    z-index: 1;
+  }
+}
+@keyframes EnvelopeDialogLogin_V2 {
+  0% {
+    opacity: 0;
+    transform: rotate3d(0, 1, 0, 270deg);
+  }
+  20% {
+    opacity: 0;
+    transform: rotate3d(0, 1, 0, 270deg);
+  }
+  40% {
+    opacity: 0;
+    transform: rotate3d(0, 1, 0, 270deg);
+  }
+  50% {
+    transform: rotate3d(0, 1, 0, 270deg);
+    opacity: 1;
+  }
+  60% {
+    transform: rotate3d(0, 1, 0, 300deg);
+    opacity: 1;
+  }
+  80% {
+    transform: rotate3d(0, 1, 0, 330deg);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, 360deg);
+    opacity: 1;
+  }
+}
+// 2. 信封展开动画 open
+@keyframes LoginLeftOpen {
+  to {
+    transform: rotate3d(0, 1, 0, -140deg);
+  }
+}
+@keyframes LoginRightOpen {
+  to {
+    transform: rotate3d(0, 1, 0, 140deg);
+  }
+}
+
+@keyframes LoginLeftClose {
+  from {
+    transform: rotate3d(0, 1, 0, -140deg);
+  }
+  to {
+    transform: rotate3d(0, 1, 0, 0);
+  }
+}
+
+@keyframes LoginRightClose {
+  from {
+    transform: rotate3d(0, 1, 0, 140deg);
+  }
+  to {
+    transform: rotate3d(0, 1, 0, 0);
+  }
+}
+
+
+// 3. 纸张撑开动画
+@keyframes LoginPaperTop {
+  0% {
+    transform:scale3d(50%, 50%, 50%);
+  }
+  60% {
+    transform:scale3d(100%, 100%, 100%);
+  }
+  100% {
+    transform:scale3d(100%, 100%, 100%) translateY(-20px);
+    z-index: 30;
+  }
+}
+@keyframes LoginPaperBottom {
+  0% {
+    transform:scale3d(100%, 100%, 100%) translateY(-20px);
+    z-index: 30;
+  }
+  10% {
+    z-index: 2;
+  }
+  40% {
+    transform:scale3d(100%, 100%, 100%);
+  }
+  100% {
+    transform:scale3d(50%, 50%, 50%);
+  }
+}
+
+// 4. 删除按钮出来
+@keyframes CloseOpen {
+  0% {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0);
+
+  }
+  100% {
+    display: inline-block;
+    color: rgba(255, 255, 255, 1);
+    z-index: 10;
+    opacity: 1;
+  }
+}
+
+// 4. 删除按钮隐藏
+@keyframes CloseClose {
+  0% {
+    display: inline-block;
+    color: rgba(255, 255, 255, 1);
+    z-index: 10;
+    opacity: 1;
+
+  }
+  100% {
+    display: none;
+    opacity: 0;
+    color: rgba(255, 255, 255, 0);
+    z-index: 1;
+  }
+}
+
+// 4. 纸张收缩动画
+@keyframes DialogCloseAnimal {
+  0% {
+    transform: scale3d(1, 1, 1);
+    opacity: 1;
+  }
+  99% {
+    display: none;
+    width: 100%;
+    height: 100%;
+  }
+  100% {
+    display: none;
+    transform: scale3d(0, 0, 0);
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+}
+// 5. 信封关闭动画 hidden
+
+// 6. 信封收缩动画
+
+// 打开信封动画
+@keyframes DialogOpenAnimal {
+  0% {
+    display: inline-block;
+    transform: scale3d(0, 0, 0);
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  1% {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+    opacity: 1;
+  }
+}
+
+
