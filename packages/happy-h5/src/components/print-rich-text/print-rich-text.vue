@@ -104,11 +104,18 @@ const list = ref([
   }
 ])
 
+const timer = ref(50)
+
 onMounted(() => {
+  if(window.location.href.indexOf('query') !== -1) {
+    console.log(window.location.href)
+    timer.value = 0
+  }
+  
   new Typed('.rich-content', {
     strings: [props.content],
-    typeSpeed: 50,
-    backSpeed: 50,
+    typeSpeed: timer.value, // 50,
+    backSpeed: timer.value,
     smartBackspace: true,
     showCursor: true,
     cursorChar: '|',
@@ -118,8 +125,6 @@ onMounted(() => {
       buildProcess()
     }
   });
-
-  
 })
 
 const currentIndex = ref(0)
@@ -144,7 +149,7 @@ const buildProcess = () => {
       }, 300)
     }
    
-  }, value)
+  },timer.value === 50 ? value : timer.value)
 }
 
 const buildProcessV2 = () => {
