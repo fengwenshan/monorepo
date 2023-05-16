@@ -7,6 +7,7 @@
     "theme": "pnpm run -F theme-color dev",
     "editor": "pnpm run -F editor dev",
     "happy:h5": "pnpm run -F @happy/h5 dev",
+    "happy:h5:build":"pnpm run -F @happy/h5 build",
     "happy:admin": "pnpm run -F @happy/admin dev"
   },
   "keywords": [],

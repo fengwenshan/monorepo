@@ -1,8 +1,8 @@
 <template>
   <div class="slider">
     <div class="slider-container">
-      <div 
-        class="slider-container__item" 
+      <div
+        class="slider-container__item"
         :key="item.id"
         v-for="item in imageList"
         :style="{
@@ -13,15 +13,15 @@
       </div>
     </div>
   </div>
-  
-  
+
+
   </template>
-  
+
 <script setup lang="ts">
 import { onUnmounted, ref, watch } from 'vue'
-import Image1 from '@/assets/img/1.png'
-import Image2 from '@/assets/img/2.png'
-import Image3 from '@/assets/img/3.png'
+import Image1 from '@/assets/img/1.jpg'
+import Image2 from '@/assets/img/2.jpg'
+import Image3 from '@/assets/img/3.jpg'
 
 
 const props = defineProps<{
@@ -89,7 +89,6 @@ onUnmounted(() => {
   clearInterval(unAutoPlay.value)
 })
 </script>
-  
-  
-  
-  
+
+
+

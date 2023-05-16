@@ -1,9 +1,9 @@
 <template>
   <div ref="scrollRef" :class="['scroll-container']">
     <span class="rich-content"></span>
-    <div 
-      class="build-item" 
-      v-for="(item, index) in list" 
+    <div
+      class="build-item"
+      v-for="(item, index) in list"
       :key="index"
     >
       <div v-if="item.status" class="item">
@@ -22,7 +22,7 @@
     <div class="receive" v-if="dropLoopTimerValue && !isLogin">
       <div class="receive-before">~</div>
       <div class="receive-time">[{{ dropLoopTimerValue }}]</div>
-      <div class="receive-progress">是否查收XXXXXX{{ dropLoopValue }}</div>
+      <div class="receive-progress">是否查收来自贺怡衡&单慧的信件？{{ dropLoopValue }}</div>
     </div>
     <div class="main-btn" v-if="dropLoopValue && dropLoopValue === '。。。' && !isLogin">
       <button @click="$emit('click', true)">【是】</button>
@@ -30,7 +30,7 @@
     </div>
     <div :style="{ height: isLogin ? '200px' : '100px' }"></div>
   </div>
-  
+
 
 </template>
 
@@ -119,7 +119,7 @@ onMounted(() => {
     }
   });
 
-  
+
 })
 
 const currentIndex = ref(0)
@@ -143,12 +143,12 @@ const buildProcess = () => {
         buildProcess()
       }, 300)
     }
-   
+
   }, value)
 }
 
 const buildProcessV2 = () => {
-  const time = 50 / 500 
+  const time = 50 / 500
   intervalId = setInterval(() => {
     progressCount.value += time
     const value = parseInt((progressCount.value / 10).toString())
