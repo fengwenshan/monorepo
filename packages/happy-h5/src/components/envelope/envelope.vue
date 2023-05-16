@@ -1,6 +1,6 @@
 <template>
   <teleport to="body">
-    <div 
+    <div
       :class="[
         'envelope-dialog',
         'animation',
@@ -15,16 +15,16 @@
           <div class="opposite animation"></div>
           <!-- 手机号码数据内容 -->
           <div class="phone animation">
-            <h2 class="title">祝福信</h2>
+            <h2 class="title">親  啟</h2>
             <div class="form-container">
               <label for="message">手机号：</label>
-              <input 
-                id="message" 
-                type="number" 
+              <input
+                id="message"
+                type="number"
                 class="number-input"
                 name="message"
                 :disabled="loading"
-                v-model="value" 
+                v-model="value"
                 placeholder="输入手机号领取祝福"
               />
               <div class="error" v-if="isError">请输入合法的手机号</div>
@@ -48,9 +48,9 @@
               <div class="paper-container-rich" v-html="state.content" ></div>
             </div>
             <div :class="['send', state.isFocus ?  'focus' : 'no-focus']">
-              <textarea 
-                v-model="state.remark" 
-                class="input" 
+              <textarea
+                v-model="state.remark"
+                class="input"
                 rows="5" cols="1"
                 :style="{ resize: 'none' }"
                 placeholder="请输入您的祝福～"
@@ -63,14 +63,14 @@
             </div>
           </div>
           <!-- 关闭按钮 -->
-          <span 
-            class="iconfont icon-guanbi animation" 
+          <span
+            class="iconfont icon-guanbi animation"
             @click="handleCloseBtn"
           />
         </div>
       </div>
-      <Toast 
-        v-model:visible="toastVisible" 
+      <Toast
+        v-model:visible="toastVisible"
         :content="toastContent"
       />
     </div>
@@ -101,7 +101,7 @@ const state = reactive<{
   phone: undefined,
   content: undefined,
   remark: undefined,
-  isFocus: false 
+  isFocus: false
 })
 
 const toastContent = ref('祝福成功～')
@@ -154,7 +154,7 @@ const handleSend = () => {
     toastVisible.value = true
     return
   }
-  
+
   axios.request({
     baseURL,
     url: `/benediction/`,
@@ -168,13 +168,13 @@ const handleSend = () => {
     toastVisible.value = true
     state.remark = ''
   })
-  
+
 }
 
 const handleSubmit = () => {
   if(loading.value) return
   if(value.value && /^1(3|4|5|6|7|8|9)\d{9}$/.test(value.value.toString())) {
-    isError.value = false  
+    isError.value = false
     axios.request({
       baseURL,
       url: `/letter/contents/${value.value}`,
@@ -192,7 +192,7 @@ const handleSubmit = () => {
     })
   } else {
     isError.value = true
-  }  
+  }
 }
 
 // 打开以后不能点击蒙版关闭

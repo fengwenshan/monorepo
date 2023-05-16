@@ -22,7 +22,7 @@
     <div class="receive" v-if="dropLoopTimerValue && !isLogin">
       <div class="receive-before">~</div>
       <div class="receive-time">[{{ dropLoopTimerValue }}]</div>
-      <div class="receive-progress">是否查收来自贺怡衡&单慧的信件？{{ dropLoopValue }}</div>
+      <div class="receive-progress">是否查收来自贺怡衡&单慧的信件{{ dropLoopValue }}</div>
     </div>
     <div class="main-btn" v-if="dropLoopValue && dropLoopValue === '。。。' && !isLogin">
       <button @click="$emit('click', true)">【是】</button>
