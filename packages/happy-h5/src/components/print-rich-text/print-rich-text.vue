@@ -20,8 +20,8 @@
       <div class="build-before">{{ Math.round(progressCount * 100) / 100 }}%</div>
     </div>
     <div class="receive" v-if="dropLoopTimerValue && !isLogin">
-      <div class="receive-before">~</div>
-      <div class="receive-time">[{{ dropLoopTimerValue }}]</div>
+<!--      <div class="receive-before">~</div>-->
+<!--      <div class="receive-time">[{{ dropLoopTimerValue }}]</div>-->
       <div class="receive-progress">是否查收来自贺怡衡&单慧的信件{{ dropLoopValue }}</div>
     </div>
     <div class="main-btn" v-if="dropLoopValue && dropLoopValue === '。。。' && !isLogin">
@@ -111,7 +111,7 @@ onMounted(() => {
     console.log(window.location.href)
     timer.value = 0
   }
-  
+
   new Typed('.rich-content', {
     strings: [props.content],
     typeSpeed: timer.value, // 50,
@@ -148,7 +148,7 @@ const buildProcess = () => {
         buildProcess()
       }, 300)
     }
-   
+
   },timer.value === 50 ? value : timer.value)
 }
 

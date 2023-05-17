@@ -14,7 +14,7 @@
   top: 0;
   overflow: hidden;
   box-sizing: border-box;
-  .envelope-container { 
+  .envelope-container {
     padding: 60px 30px 20px;
     box-sizing: border-box;
   }
@@ -123,7 +123,7 @@
     height: 100%;
     border-radius: 10px;
     background-color: $envelope-bg;
-    
+
   }
   .front-left {
     left: 0;
@@ -154,7 +154,7 @@
     .input {
       // height: 32px;
       height: 100%;
-  
+
       line-height: 18px;
       font-size: 16px;
       padding: 6px 4px;
@@ -190,7 +190,7 @@
   }
   &.no-login,
   &.login {
-    .paper { 
+    .paper {
       opacity: 0;
     }
   }
@@ -256,7 +256,7 @@
       animation-delay: 1.2s;
       animation-duration: 2.5s;
       animation-name: LoginPaperTop;
-      
+
     }
     .front-left {
       animation-duration: 2s;
@@ -299,7 +299,7 @@
       // animation-delay: 1.2s;
       animation-duration: 2.5s;
       animation-name: LoginPaperBottom;
-      
+
     }
     .front-left {
       animation-delay: 1.2s;
@@ -350,7 +350,7 @@
   to {
     opacity: 1;
     transform: scale(1);
-  } 
+  }
 }
 // 1. 翻转动画 no-login -> login
 @keyframes EnvelopeDialogLogin {
