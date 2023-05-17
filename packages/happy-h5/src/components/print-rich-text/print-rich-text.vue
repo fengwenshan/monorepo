@@ -133,8 +133,8 @@ let progressCount = ref(0);
 let intervalId = 0
 const buildProcess = () => {
   list.value[currentIndex.value].status = true
-  const min = 800;
-  const max = 2000;
+  const min = 200;
+  const max = 1000;
   const value =  Math.floor(Math.random() * (max - min + 1) + min);
   list.value[currentIndex.value].date = getCurrentTime()
   setTimeout(() => {
@@ -159,7 +159,7 @@ const buildProcessV2 = () => {
     const value = parseInt((progressCount.value / 10).toString())
     progressContent.value = ''
     for(let i = 0; i < value; i++) {
-      progressContent.value += '#'
+      progressContent.value += '##'
     }
     if(progressCount.value >= 100) {
       progressCount.value = 100

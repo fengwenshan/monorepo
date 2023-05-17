@@ -52,7 +52,7 @@ watch(() => props.open, (newVal) => {
     if(newVal) {
       unTimeout.value = setInterval(() => {
         autoPlay()
-      }, 3000)
+      }, 2000)
     } else {
       clearInterval(unTimeout.value)
       clearInterval(unAutoPlay.value)
