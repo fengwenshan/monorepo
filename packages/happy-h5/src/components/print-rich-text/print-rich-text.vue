@@ -148,7 +148,6 @@ const buildProcess = () => {
         buildProcess()
       }, 300)
     }
-
   },timer.value === 50 ? value : timer.value)
 }
 

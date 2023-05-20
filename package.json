@@ -9,7 +9,8 @@
     "happy:h5": "pnpm run -F @happy/h5 dev",
     "happy:h5:build": "pnpm run -F @happy/h5 build",
     "happy:admin": "pnpm run -F @happy/admin dev",
-    "student:api": "pnpm run -F @student-api dev"
+    "student:api": "pnpm run -F @student-api dev",
+    "test": "pnpm run -F server dev"
   },
   "keywords": [],
   "author": "",
